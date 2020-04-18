@@ -1,1 +1,328 @@
 // This is an empty scss file for your custom styles - Please add your super duper awesome mega design styles here
+// Import google font
+@import url(http://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,700,700i,800,800i,900,900i);
+
+
+$body-font: 'Nunito Sans';
+
+body{ 
+    font-family: $body-font;
+}
+
+
+.header-search {
+    &>div{
+        position: relative;
+        top: 0
+    }
+
+    & form {
+        margin: 0 auto;
+        position: relative
+    }
+
+    & input[type=text] {
+        color: #000;
+    }
+
+    @media (max-width: 991.98px) {
+        & input[type=text] {
+            font-size: 1rem
+        }
+    }
+
+    & .btn-cancel {
+        position: absolute;
+        right: 2.5rem
+    }
+
+    & .btn[type=submit] {
+        position: absolute;
+        right: 0
+    }
+}
+
+.img-brand {
+    height: 2em;
+    width: auto;
+}
+  
+.navbar-light .navbar-brand {
+    color: #7413dc;
+}
+  
+.navbar-toggler {
+    padding: 0.25rem 0.75rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 0;
+}
+
+#wrapper-footer {
+    background-color: $primary;
+    color: $light;
+    padding-top: 30px;
+    & a {
+        @extend .text-reset;
+    }
+}
+
+#footer-full-content {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    
+  
+    .footer-widget ul {
+        list-style-type: none;
+        padding-inline-start: 0;
+    }
+
+    & > .row > div {
+        & > h3 {
+            font-size: 15px;
+            padding: 0 0 7px 0;
+            margin: 0 0 20px 0;
+            font-size: 1em;
+        }
+        &:nth-child(1) > h3 {
+            color: #7413dc;
+            border-bottom: 1px solid #7413dc;
+        }
+        &:nth-child(2) > h3 {
+            color: #007bff;
+            border-bottom: 1px solid #007bff;
+        }
+        &:nth-child(3) > h3 {
+            color: #23a950;
+            border-bottom: 1px solid #23a950;
+        }
+        &:nth-child(4) > h3 {
+            color: #e22e12;
+            border-bottom: 1px solid #e22e12;
+        }
+    } 
+}
+
+.testimonial {
+    padding-top: 65px;
+    padding-bottom: 65px;
+    & h6 {
+        font-weight: 800;
+        font-size: 40px;
+        color: $white;
+        line-height: 1.15em;
+        margin: 0 0 5px 0;
+    }
+    & .author {
+        font-size: 25px;
+    }
+}
+
+@each $color, $value in $colors {
+    .bg-#{$color} {
+        background: $value;
+    }
+
+    .btn-#{$color} {
+        @include button-variant($value, $value);
+    }
+
+    .text-#{$color} {
+        color: $value;
+    }
+    
+    .bg-map-#{$color} {
+        background-color: $value;
+        background-image: url("../images/topograph3.svg");
+        background-size: 100%;
+        background-position: 0 0;
+        background-repeat: no-repeat;
+    }
+}
+
+
+
+.section-blocks {
+    position: relative;
+
+    & .section {
+        position: relative;
+        float: left;
+        width: 19%;
+        margin: 0 1.2% 0 0;
+
+        @media (max-width: 992px) {
+
+            width: 49.25%;
+            margin-top: 0.5em;
+
+            &:nth-child(2n+2) {
+                margin-right: 0;
+            }
+            &:last-of-type {
+                width: 100%;
+            }
+        }
+
+        &:last-of-type {
+            margin-right: 0;
+        }
+
+        & .head {
+            position: relative;
+            height: 135px;
+            border-radius: 2px 2px 0 0;
+            
+            @media only screen and (max-width: 768px) {
+                height: 100px;
+            }
+
+            & .inner {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                -webkit-transform: translate(-50%, -50%);
+                -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+                text-align: center;
+                color: $white;
+                width: 90%;
+                & span {
+                    font-size: 15px;
+                }
+
+                & h4 {
+                    font-size: 30px;
+                    line-height: 1.1em;
+                }
+
+                @media only screen and (max-width: 768px) {
+                    & h4 {
+                        font-size: 20px;
+                    }
+                }
+                
+            }
+        }
+
+        & .more {
+            position: relative;
+            height: 60px;
+            box-shadow: 0 0 250px rgba($black, 0.2);
+            background-color: $white;
+            border-radius: 0 0 2px 2px;
+            text-align: center;
+
+            & span {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 90%;
+            }
+        }
+
+        &:hover {
+            box-shadow: 0 0 250px rgba($black, 0.2);
+        }
+
+        &:nth-of-type(1n) .head {
+            background: $beaver-blue;
+        }
+        &:nth-of-type(2n) .head {
+            background: $cub-green;
+        }
+        &:nth-of-type(3n) .head {
+            background: $scout-green;
+        }
+        &:nth-of-type(4n) .head {
+            background: $explorer-blue;
+        }
+        &:nth-of-type(5n) .head {
+            background: $network-black;
+        }
+    }
+
+    & a {
+        outline: 0;
+        text-decoration: none;
+        -webkit-transition: 0.3s;
+        -o-transition: 0.3s;
+        transition: 0.3s;
+        color: #000;
+    }
+
+}
+
+.grow{
+    transition: 0.3s;
+    &:hover {
+        transform: scale(1.05);
+        transition: 0.3s;
+    }
+}
+
+#hero-carousel {
+    & .carousel-innner {
+        width: 100%;
+    }
+
+    & .carousel-item {
+        max-height: 570px;
+        & img {
+            width: 100% !important;
+            display: block !important;
+            object-fit: cover;
+            object-position: 100% 100%;
+        }
+    }
+
+    & .carousel-caption h5, & .carousel-caption p{
+        text-shadow: 0 0 5px #000;
+    }
+    & .carousel-caption a {
+        text-shadow: none !important;
+    }
+}
+
+.news-cards.card-columns { 
+    @media (max-width: map-get($grid-breakpoints, 'md')){
+        column-count: 2;
+    }
+    & .card .card-img-top{
+        background-color: $primary;
+    }
+}
+
+.entry-header-image {
+    & .cover-text{
+        color: $light;
+    }
+}
+
+.breadcrumb {
+    // Override padding
+    padding: 0.5rem 0rem;
+
+    // Override margin/padding
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 0;
+
+    & > li > a {
+        color: $gray-80 !important;
+    }
+
+    & > li.active {
+        font-weight: bold;
+    }
+
+}
+
+.wrapper{ 
+    padding-top: 0;
+}

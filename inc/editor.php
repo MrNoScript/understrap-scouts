@@ -15,7 +15,7 @@ if ( ! function_exists( 'understrap_wpdocs_theme_add_editor_styles' ) ) {
 	 * Registers an editor stylesheet for the theme.
 	 */
 	function understrap_wpdocs_theme_add_editor_styles() {
-		add_editor_style( 'css/custom-editor-style.min.css' );
+		add_editor_style( 'css/custom-editor-style.css' );
 	}
 }
 
