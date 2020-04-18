@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || exit;
 
 	<!-- ******************* The Hero Widget Area ******************* -->
 
-	<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+	<div id="hero-carousel" class="carousel slide" data-ride="carousel">
 
 		<div class="carousel-inner" role="listbox">
 
@@ -21,7 +21,7 @@ defined( 'ABSPATH' ) || exit;
 
 		</div>
 
-		<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+		<a class="carousel-control-prev" href="#hero-carousel" role="button" data-slide="prev">
 
 			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 
@@ -29,7 +29,7 @@ defined( 'ABSPATH' ) || exit;
 
 		</a>
 
-		<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+		<a class="carousel-control-next" href="#hero-carousel" role="button" data-slide="next">
 
 			<span class="carousel-control-next-icon" aria-hidden="true"></span>
 

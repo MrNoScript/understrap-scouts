@@ -21,36 +21,62 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 <div class="wrapper" id="page-wrapper">
 
-	<div class="<?php echo esc_attr( $container ); ?>" id="content" tabindex="-1">
+	<?php while( have_posts() ): the_post(); ?>
 
-		<div class="row">
 
-			<!-- Do the left sidebar check -->
-			<?php get_template_part( 'global-templates/left-sidebar-check' ); ?>
+		<header class="entry-header">
 
-			<main class="site-main" id="main">
+			<?php if(has_post_thumbnail()): ?>
+				<div class="entry-header-image p-6 mb-3" style="background: url(<?= get_the_post_thumbnail_url() ?>) center center / cover;">
+					<div class="<?php echo esc_attr( $container ); ?> cover-text">
+						<?php the_title( '<h1 class="d-none d-md-block entry-title">', '</h1>' ); ?>
+					</div>
+				</div>
 
-				<?php while ( have_posts() ) : the_post(); ?>
+			<?php else: ?>
 
-					<?php get_template_part( 'loop-templates/content', 'page' ); ?>
+				<div class="text-left bg-light text-dark p-5 mb-3">
+					<div class="<?php echo esc_attr( $container ); ?>">
+						<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+					</div>
+				</div>
 
-					<?php
-					// If comments are open or we have at least one comment, load up the comment template.
-					if ( comments_open() || get_comments_number() ) :
-						comments_template();
-					endif;
-					?>
+			<?php endif; ?>
 
-				<?php endwhile; // end of the loop. ?>
+		</header><!-- .entry-header -->
 
-			</main><!-- #main -->
+		<div class="<?php echo esc_attr( $container ); ?>" id="content" tabindex="-1">
 
-			<!-- Do the right sidebar check -->
-			<?php get_template_part( 'global-templates/right-sidebar-check' ); ?>
+			<div class="row">
 
-		</div><!-- .row -->
+				<main class="site-main" id="main">
+					
+					<article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
-	</div><!-- #content -->
+						<!-- Do the left sidebar check -->
+						<?php get_template_part( 'global-templates/left-sidebar-check' ); ?>
+
+						<?php get_template_part( 'loop-templates/content', 'page' ); ?>
+
+						<?php
+						// If comments are open or we have at least one comment, load up the comment template.
+						if ( comments_open() || get_comments_number() ) :
+							comments_template();
+						endif;
+						?>
+
+						<!-- Do the right sidebar check -->
+						<?php get_template_part( 'global-templates/right-sidebar-check' ); ?>
+
+					</article>
+
+				</main><!-- #main -->
+
+			</div><!-- .row -->
+
+		</div><!-- #content -->
+				
+	<?php endwhile; ?>
 
 </div><!-- #page-wrapper -->
 

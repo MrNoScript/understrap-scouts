@@ -2,5 +2,85 @@
 // To overwrite a Bootstrap variable you don´t have to touch the Bootstrap folder.
 // Just copy a variable from src/sass/bootstrap4/_variables.scss, paste it here and edit the value.
 
+$spacers: ();
+$spacer: 1rem;
 
-$primary: #5533ff; // Thats a sample how you could change a BootStrap variable.
+$spacers: map-merge(
+  (
+    6: ($spacer * 5)
+  ),
+  $spacers
+);
+
+// Color system
+
+// set brand colour scheme
+$blue:      #006ddf;
+$purple:    #7413dc;
+$pink:      #ffb4e5;
+$red:       #e22e12;
+$yellow:    #ffe627;
+$green:     #23a950;
+$teal:      #00a794;
+$navy:      #003982;
+
+$primary: $purple; // Thats a sample how you could change a BootStrap variable.
+$secondary: $teal;
+$info: $blue;
+
+$white   : #fff;
+$gray-10 : darken($white, 10%);
+$gray-20 : darken($white, 20%);
+$gray-40 : darken($white, 40%);
+$gray-60 : darken($white, 60%);
+$gray-80 : darken($white, 80%);
+$black   : #000;
+
+$beaver-blue:		  #006ee0;
+$cub-green: 		  #37ab47;
+$scout-green: 	  #004851;
+$explorer-blue:	  #003a82;
+$network-black:		  $black;
+
+
+$section-colours: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$section-colours: map-merge(
+  (
+    "beavers":      $beaver-blue,
+    "cubs":         $cub-green,
+    "scouts":       $scout-green,
+    "explorers":    $explorer-blue,
+    "network":      $network-black,
+  ),
+  $section-colours
+);
+
+// Typography
+//
+// Font, line-height, and color for body text, headings, and more.
+$font-family-sans-serif: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+// Heading Font weight - 'Nunit Sans Black'
+$headings-font-weight: 900;
+
+// Links
+//
+// Style anchor elements.
+$link-color: $blue;
+
+// Components
+//
+// Define common padding and border radius sizes and more.
+
+$component-active-bg: $gray-80;
+
+// Square borders
+$border-radius:     0;
+$border-radius-lg:  $border-radius;
+$border-radius-sm:  $border-radius;
+
+// Dropdowns
+//
+// Dropdown menu container and contents.
+$dropdown-padding-y:    0;

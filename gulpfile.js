@@ -237,6 +237,14 @@ gulp.task('copy-assets', function (done) {
 		.src(`${paths.node}undescores-for-npm/js/skip-link-focus-fix.js`)
 		.pipe(gulp.dest(`${paths.dev}/js`));
 
+	// CookieConsent files into /{js/css}
+	gulp
+		.src(`${paths.node}cookieconsent/build/cookieconsent.min.css`)
+		.pipe(gulp.dest(`${paths.css}`));
+	gulp
+		.src(`${paths.node}cookieconsent/build/cookieconsent.min.js`)
+		.pipe(gulp.dest(`${paths.js}`));
+		
 	done();
 });
 

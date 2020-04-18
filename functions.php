@@ -24,6 +24,7 @@ $understrap_includes = array(
 	'/woocommerce.php',                     // Load WooCommerce functions.
 	'/editor.php',                          // Load Editor functions.
 	'/deprecated.php',                      // Load deprecated functions.
+	'/custom-breadcrumb.php',				// Load custom breadcrumbs.
 );
 
 foreach ( $understrap_includes as $file ) {

@@ -126,8 +126,8 @@ if ( ! function_exists( 'understrap_widgets_init' ) ) {
 				'description'   => __( 'Hero slider area. Place two or more widgets here and they will slide!', 'understrap' ),
 				'before_widget' => '<div class="carousel-item">',
 				'after_widget'  => '</div>',
-				'before_title'  => '',
-				'after_title'   => '',
+				'before_title'  => '<h5>',
+				'after_title'   => '</h5>',
 			)
 		);
 
@@ -168,4 +168,81 @@ if ( ! function_exists( 'understrap_widgets_init' ) ) {
 		);
 
 	}
+
 } // endif function_exists( 'understrap_widgets_init' ).
+
+
+
+add_filter( 'widget_display_callback', 'understrap_widget_override', 10, 3);
+
+if ( ! function_exists( 'understrap_widget_override' ) ) {
+
+	function understrap_widget_override( $instance, $widget_class, $args ) {
+
+		// Only edit for 'hero' sidebar
+		if( $args['id'] === 'hero' ){
+
+			// Only allow WP_Widget_Media_Image's in this widget
+			if(get_class($widget_class) !== 'WP_Widget_Media_Image'){
+				return false;
+			}
+
+			// render image
+			if($instance['width'] === 0) $instance['width'] = '';
+			if($instance['height'] === 0) $instance['height'] = '';
+
+			$image = sprintf(
+				'<img class="%1$s" src="%2$s" alt="%3$s" width="%4$s" height="%5$s" />',
+				esc_attr( $instance['image_classes'] ),
+				esc_url( $instance['url'] ),
+				esc_attr( $instance['alt'] ),
+				esc_attr( $instance['width'] ),
+				esc_attr( $instance['height'] )
+			);
+
+			$title = '';
+
+			if( !empty( $instance['title'] ) ) {
+				
+				if( empty($args['before_title']) ) $args['before_title'] = '<h5>';
+				if( empty($args['after_title']) ) $args['after_title'] = '<h5>';
+
+				$title = sprintf('%1$s%2$s%3$s', $args['before_title'], $instance['title'], $args['after_title']);
+			}
+
+			$caption = '';
+
+			if( !empty( $instance['caption'] ) ) {
+				$caption = sprintf('<p>%1$s</p>', $instance['caption']);
+			}
+
+			$link = '';
+			if( !empty( $instance['link_url'] ) ){
+				$target = '';
+				if( $instance['link_target_blank'] ){
+					$target = 'target="_blank"';
+				}
+
+				$link = sprintf('<p><a class="btn btn-secondary" %3$s href="%1$s">%2$s</a></p>', $instance['link_url'], $instance['image_title'], $target);
+			}
+
+			$image_text = '';
+			if(!empty($title) || !empty($caption) || !empty($link)){
+				$image_text = sprintf('<div class="carousel-caption d-none d-md-block">%1$s%2$s%3$s</div>', $title, $caption, $link);
+			}
+
+			echo sprintf(' %1$s %2$s %3$s %4$s',
+				$args['before_widget'], // before widget
+				$image,
+				$image_text,
+				$args['after_widget'],	// after widget
+			);
+
+			// echo '<!-- ' . print_r($instance, true) . print_r($widget_class, true) . print_r($args, true) . ' -->';
+			return true;
+		}
+		$widget_class->widget( $args, $instance );
+        return true;
+	}
+
+} // endif function_exists( 'understrap_widget_override' ).
