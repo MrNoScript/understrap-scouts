@@ -24,6 +24,14 @@ $green:     #23a950;
 $teal:      #00a794;
 $navy:      #003982;
 
+$colors: () !default;
+$colors: map-merge(
+  (
+    'navy': $navy
+  ),
+  $colors
+);
+
 $primary: $purple; // Thats a sample how you could change a BootStrap variable.
 $secondary: $teal;
 $info: $blue;
@@ -36,7 +44,7 @@ $gray-60 : darken($white, 60%);
 $gray-80 : darken($white, 80%);
 $black   : #000;
 
-$beaver-blue:		  #006ee0;
+$beaver-blue:       $blue;
 $cub-green: 		  #37ab47;
 $scout-green: 	  #004851;
 $explorer-blue:	  #003a82;

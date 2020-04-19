@@ -2,8 +2,9 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 } 
+$container = get_theme_mod( 'understrap_container_type' );
 ?>
-<div class="container mt-0 mt-5">
+<div class="<?= $container?> mt-0 py-3">
     <div class="section-blocks clearfix">
         <a href="" class="section grow fade-in">
             <div class="head">
@@ -49,7 +50,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <span class="link">Take the lead &amp; embrace new experiences</span>
             </div>
         </a>
-        <a href="<" class="section grow fade-in">
+        <a href="" class="section grow fade-in">
             <div class="head">
                 <div class="inner">
                     <img width="114" height="35" src="<?= get_stylesheet_directory_uri() ?>/images/logos/svg/logo-network.svg"><br>

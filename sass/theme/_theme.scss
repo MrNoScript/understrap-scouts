@@ -1,14 +1,10 @@
 // This is an empty scss file for your custom styles - Please add your super duper awesome mega design styles here
 // Import google font
-@import url(http://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,700,700i,800,800i,900,900i);
+// HTTPS or HTTP
+@import url(//fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,700,700i,800,800i,900,900i);
 
 
 $body-font: 'Nunito Sans';
-
-body{ 
-    font-family: $body-font;
-}
-
 
 .header-search {
     &>div{
@@ -120,6 +116,12 @@ body{
     }
 }
 
+@each $color, $value in $section-colours {
+    .bg-#{$color} {
+        background: $value;
+    }
+}
+
 @each $color, $value in $colors {
     .bg-#{$color} {
         background: $value;
@@ -142,6 +144,15 @@ body{
     }
 }
 
+.widget {
+    &.bg-cubs a,
+    &.bg-scouts a,
+    &.bg-beavers a,
+    &.bg-explorers a{
+        @extend .btn;
+        @extend .btn-outline-light;
+    }
+}
 
 
 .section-blocks {
@@ -326,3 +337,4 @@ body{
 .wrapper{ 
     padding-top: 0;
 }
+

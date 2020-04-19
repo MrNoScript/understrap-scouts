@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 } 
 ?>
-<div class="bg-teal p-5 my-3 text-light">
+<div class="bg-teal p-5 mb-3 text-light">
     <div class="container px-5 d-flex flex-column justify-content-center align-items-center flex-md-row">
         <div class="flex-shrink-0 m-3">
             <h2 class="h4">

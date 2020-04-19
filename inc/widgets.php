@@ -95,6 +95,19 @@ if ( ! function_exists( 'understrap_widgets_init' ) ) {
 	 * Initializes themes widgets.
 	 */
 	function understrap_widgets_init() {
+
+		register_sidebar(
+			array(
+				'name' 	=> 'Section Sidebar',
+				'id'	=> 'section-sidebar',
+				'description'	=> 'Section page sidebar widget area',
+				'before_widget' => '<div id="%1$s" class="widget mb-3 p-3 text-light bg-teal %2$s">',
+				'after_widget'  => '</div>',
+				'before_title'	=> '<p class="h5">',
+				'after_title' 	=> '</p>'
+			)
+		);
+
 		register_sidebar(
 			array(
 				'name'          => __( 'Right Sidebar', 'understrap' ),
@@ -180,7 +193,7 @@ if ( ! function_exists( 'understrap_widget_override' ) ) {
 	function understrap_widget_override( $instance, $widget_class, $args ) {
 
 		// Only edit for 'hero' sidebar
-		if( $args['id'] === 'hero' ){
+		if( isset($args['id']) && $args['id'] === 'hero' ){
 
 			// Only allow WP_Widget_Media_Image's in this widget
 			if(get_class($widget_class) !== 'WP_Widget_Media_Image'){
@@ -237,12 +250,115 @@ if ( ! function_exists( 'understrap_widget_override' ) ) {
 				$image_text,
 				$args['after_widget'],	// after widget
 			);
-
-			// echo '<!-- ' . print_r($instance, true) . print_r($widget_class, true) . print_r($args, true) . ' -->';
-			return true;
+			
+			return false;
 		}
-		$widget_class->widget( $args, $instance );
-        return true;
+		return $instance;
 	}
 
 } // endif function_exists( 'understrap_widget_override' ).
+
+if( !function_exists( 'scoutstrap_register_widgets' ) ){
+
+	function scoutstrap_register_widgets(){
+
+		register_widget('Group_Finder_Widget');
+		register_widget('Volunteer_Widget');
+
+	}
+
+	
+	add_action( 'widgets_init', 'scoutstrap_register_widgets' );
+}
+
+class Volunteer_Widget extends WP_Widget{
+	private static $_id = 'volunteer';
+	private static $_name = 'Volunteer';
+	private static $_description = 'Volunteer widget to get adults involved';
+
+	function __construct(){
+		parent::__construct(self::$_id, self::$_name, self::$_description);
+	}
+
+	public function widget( $arvs, $instance ){
+		global $post;
+
+		$section = get_field('section', $post->ID) ?? 'scouts';
+		$section_name = ucfirst($section);
+		?>
+		<div class="bg-navy p-3 widget text-light mb-3">
+			<h5>Volunteer with <?= $instance['group_name'] ?? get_bloginfo('sitename') ?></h5>
+			<p>
+				All of our leaders are trained volunteers working to make <?= $section_name ?> the best it can be, 
+				but we don’t just need swashbuckling adventurers to lead our expeditions. 
+				We also need tidy-uppers and tea-makers and great listeners from all walks of life – for as much or as little time as they can spare.
+			</p>
+			<p>
+				<a class="btn btn-outline-light" href="<?= get_permalink($instance['link']) ?? 'https://scouts.org.uk/join' ?>">Learn about Volunteering</a>
+			</p>
+		</div>
+		<?php
+		return;
+	}
+
+	public function form( $instance ){
+		$pages = get_pages();
+		?>
+		<p>
+			<label for="<?= $this->get_field_id('group_name') ?>">Group Name</label>
+			<input class="widefat" id="<?= $this->get_field_id( 'group_name' ); ?>" name="<?= $this->get_field_name( 'group_name' ); ?>" type="text" value="<?= $instance['group_name'] ?? get_bloginfo('sitename') ?>" />
+		</p>
+		<p>
+			<label for="<?= $this->get_field_id('link') ?>">Link: </label>
+			<select class="widefat" id="<?= $this->get_field_id('link') ?>" name="<?= $this->get_field_name('link') ?>">
+			<?php foreach($pages as $page): ?>
+				<option <?= (int)$instance['link'] === $page->ID ? 'selected="selected"' : '' ?> value="<?= $page->ID ?>"><?= $page->post_title ?></option>
+			<?php endforeach; ?>
+			</select>
+		</p>
+
+		<?php 
+	}
+
+	public function update( $new_instance, $old_instance ){
+		return $new_instance;
+	}
+}
+
+class Group_Finder_Widget extends WP_Widget {
+
+	private static $_id = 'group_finder';
+	private static $_name = 'Group Finder Widget';
+	private static $_description = 'Simple widget which displays a search for to find your local group.';
+
+	function __construct() {
+		parent::__construct(
+			// Base ID of your widget
+			self::$_id, 
+			
+			// Widget name will appear in UI
+			__(self::$_name, 'scoutstrap'), 
+			
+			// Widget description
+			array( 'description' => __( self::$_description, 'scoutstrap' ), ) 
+		);
+	}
+
+	public function widget( $args, $instance ) {
+		?>
+<div class="bg-teal p-3 widget text-light mb-3">
+	<h3 class="p-3">Find your local group</h3>
+	<form class="flex-shrink-0 d-flex bg-white m-3" action="https://scouts.org.uk/groups/" method="GET" target="_blank">
+		<div class="form-group w-100 m-0">
+			<label for="input_location" class="sr-only">Location</label>
+			<input id="input_location" type="text" placeholder="Postcode or location" name="loc" size="25" autocomplete="off" class="form-control border-0 bg-white h-100">
+		</div>
+		<button type="submit" class="btn btn-lg btn-teal border-white">
+			Go
+		</button>
+	</form>
+</div>
+		<?php 
+	}
+
+}

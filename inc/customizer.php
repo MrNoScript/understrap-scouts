@@ -66,6 +66,85 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 
 		}
 
+		#region Age Blocks
+		$wp_customize->add_setting(
+			'understrap_age_blocks',
+			array(
+				'default'           => 'true',
+				'type'              => 'theme_mod',
+				'capability'        => 'edit_theme_options',
+			)
+		);
+
+		$wp_customize->add_control(
+			new WP_Customize_Control(
+				$wp_customize,
+				'understrap_age_blocks',
+				array(
+					'label'       => __( 'Age Blocks', 'understrap' ),
+					'description' => __( 'Show the Age Blocks section on the Front Page', 'understrap' ),
+					'section'     => 'understrap_theme_layout_options',
+					'settings'    => 'understrap_age_blocks',
+					'type'        => 'checkbox',
+					'priority'    => apply_filters( 'understrap_age_blocks_priority', 10 ),
+				)
+			)
+		);
+		#endregion 
+
+		#region Group Finder
+		$wp_customize->add_setting(
+			'understrap_group_finder',
+			array(
+				'default'           => 'true',
+				'type'              => 'theme_mod',
+				'capability'        => 'edit_theme_options',
+			)
+		);
+
+		$wp_customize->add_control(
+			new WP_Customize_Control(
+				$wp_customize,
+				'understrap_group_finder',
+				array(
+					'label'       => __( 'Group Finder', 'understrap' ),
+					'description' => __( 'Show the Group Finder section on the Front Page', 'understrap' ),
+					'section'     => 'understrap_theme_layout_options',
+					'settings'    => 'understrap_group_finder',
+					'type'        => 'checkbox',
+					'priority'    => apply_filters( 'understrap_group_finder_priority', 10 ),
+				)
+			)
+		);
+		#endregion
+
+		#region Latest News
+		$wp_customize->add_setting(
+			'understrap_blog',
+			array(
+				'default'           => 'true',
+				'type'              => 'theme_mod',
+				'capability'        => 'edit_theme_options',
+			)
+		);
+
+		$wp_customize->add_control(
+			new WP_Customize_Control(
+				$wp_customize,
+				'understrap_blog',
+				array(
+					'label'       => __( 'Blog', 'understrap' ),
+					'description' => __( 'Show the latest news section on the Front Page', 'understrap' ),
+					'section'     => 'understrap_theme_layout_options',
+					'settings'    => 'understrap_blog',
+					'type'        => 'checkbox',
+					'priority'    => apply_filters( 'understrap_blog_priority', 10 ),
+				)
+			)
+		);
+		#endregion
+
+		#region Container Type
 		$wp_customize->add_setting(
 			'understrap_container_type',
 			array(
@@ -94,7 +173,9 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 				)
 			)
 		);
+		#endregion
 
+		#region Sidebar Position
 		$wp_customize->add_setting(
 			'understrap_sidebar_position',
 			array(
@@ -129,6 +210,8 @@ if ( ! function_exists( 'understrap_theme_customize_register' ) ) {
 				)
 			)
 		);
+		#endregion
+	
 	}
 } // endif function_exists( 'understrap_theme_customize_register' ).
 add_action( 'customize_register', 'understrap_theme_customize_register' );
