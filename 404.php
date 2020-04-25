@@ -36,41 +36,52 @@ $container = get_theme_mod( 'understrap_container_type' );
 							<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'understrap' ); ?></p>
 
 							<?php get_search_form(); ?>
+							
+							<div class="row">
 
-							<?php the_widget( 'WP_Widget_Recent_Posts' ); ?>
+								<div class="col">
 
-							<?php if ( understrap_categorized_blog() ) : // Only show the widget if site has multiple categories. ?>
+									<?php the_widget( 'WP_Widget_Recent_Posts' ); ?>
 
-								<div class="widget widget_categories">
+								</div><!-- .col -->
 
-									<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'understrap' ); ?></h2>
+								<?php if ( understrap_categorized_blog() ) : // Only show the widget if site has multiple categories. ?>
+									<div class="col">
 
-									<ul>
-										<?php
-										wp_list_categories(
-											array(
-												'orderby'    => 'count',
-												'order'      => 'DESC',
-												'show_count' => 1,
-												'title_li'   => '',
-												'number'     => 10,
-											)
-										);
-										?>
-									</ul>
+										<div class="widget widget_categories">
 
-								</div><!-- .widget -->
+											<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'understrap' ); ?></h2>
 
-							<?php endif; ?>
+											<ul>
+												<?php
+												wp_list_categories(
+													array(
+														'orderby'    => 'count',
+														'order'      => 'DESC',
+														'show_count' => 1,
+														'title_li'   => '',
+														'number'     => 10,
+													)
+												);
+												?>
+											</ul>
 
-							<?php
+										</div><!-- .widget -->
 
-							/* translators: %1$s: smiley */
-							$archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'understrap' ), convert_smilies( ':)' ) ) . '</p>';
-							the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$archive_content" );
+									</div><!-- .col -->
 
-							the_widget( 'WP_Widget_Tag_Cloud' );
-							?>
+								<?php endif; ?>
+
+								<div class="col">
+									<?php
+
+									/* translators: %1$s: smiley */
+									$archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'understrap' ), convert_smilies( ':)' ) ) . '</p>';
+									the_widget( 'WP_Widget_Archives', ['dropdown' => 1], ['after_title' => '</h2>' . $archive_content] );
+									?>
+								</div> <!-- .col -->
+
+							</div><!-- .row -->
 
 						</div><!-- .page-content -->
 
