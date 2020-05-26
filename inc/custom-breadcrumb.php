@@ -39,6 +39,11 @@ if( !function_exists('understrap_custom_breadcrumb') ){
 			echo '</a></li>';
 		} elseif (is_404()){
 			echo '<li class="breadcrumb-item active"><span>Not Found...</span></li>';
+		} elseif (is_archive()){
+			echo '<li class="breadcrumb-item active">';
+			echo get_the_archive_title();
+			the_archive_description();
+			echo '</li>';
 		} elseif (is_author()){
 			global $author;
 

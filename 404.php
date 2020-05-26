@@ -15,7 +15,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 <div class="wrapper" id="error-404-wrapper">
 
-	<div class="<?php echo esc_attr( $container ); ?>" id="content" tabindex="-1">
+	<div class="<?php echo esc_attr( $container ); ?>" id="content">
 
 		<div class="row">
 
@@ -48,7 +48,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 								<?php if ( understrap_categorized_blog() ) : // Only show the widget if site has multiple categories. ?>
 									<div class="col">
 
-										<div class="widget widget_categories">
+										<div class="widget widget_categories h-100">
 
 											<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'understrap' ); ?></h2>
 
@@ -77,7 +77,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 									/* translators: %1$s: smiley */
 									$archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'understrap' ), convert_smilies( ':)' ) ) . '</p>';
-									the_widget( 'WP_Widget_Archives', ['dropdown' => 1], ['after_title' => '</h2>' . $archive_content] );
+									the_widget( 'WP_Widget_Archives', ['dropdown' => 1], ['after_title' => '</h2><div class="widget-body">' . $archive_content, 'after_widget' => '</div></div>'] );
 									?>
 								</div> <!-- .col -->
 

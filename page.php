@@ -23,7 +23,6 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 	<?php while( have_posts() ): the_post(); ?>
 
-
 		<header class="entry-header">
 
 			<?php if(has_post_thumbnail()): ?>
@@ -45,36 +44,20 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 		</header><!-- .entry-header -->
 
-		<div class="<?php echo esc_attr( $container ); ?>" id="content" tabindex="-1">
+		<main class="<?php echo esc_attr( $container ); ?>" id="main">
 
 			<div class="row">
+				
+				<article <?php post_class(['col-md']); ?> id="post-<?php the_ID(); ?>">
 
-				<main class="site-main" id="main">
-					
-					<article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
+					<?php get_template_part( 'loop-templates/content', 'page' ); ?>
 
-						<!-- Do the left sidebar check -->
-						<?php get_template_part( 'global-templates/left-sidebar-check' ); ?>
+				</article>
 
-						<?php get_template_part( 'loop-templates/content', 'page' ); ?>
+				<!-- Do the right sidebar check -->
+				<?php get_template_part( 'sidebar-templates/sidebar', 'right-static' ); ?>
 
-						<?php
-						// If comments are open or we have at least one comment, load up the comment template.
-						if ( comments_open() || get_comments_number() ) :
-							comments_template();
-						endif;
-						?>
-
-						<!-- Do the right sidebar check -->
-						<?php get_template_part( 'global-templates/right-sidebar-check' ); ?>
-
-					</article>
-
-				</main><!-- #main -->
-
-			</div><!-- .row -->
-
-		</div><!-- #content -->
+		</main><!-- #main -->
 				
 	<?php endwhile; ?>
 

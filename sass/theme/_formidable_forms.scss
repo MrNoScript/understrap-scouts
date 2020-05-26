@@ -1,0 +1,56 @@
+.frm_forms {
+
+    padding: 3rem;
+    background-color: $blue;
+    color: $white;
+
+    .frm_form_field {
+        @extend .form-group;
+    
+        input[type=text], 
+        input[type=password], 
+        input[type=email], 
+        input[type=number], 
+        input[type=url], 
+        input[type=tel], 
+        input[type=phone], 
+        input[type=search], 
+        select, 
+        textarea
+        {
+            @extend .form-control;
+        }
+
+        .frm_primary_label {
+            @extend label;
+        }
+    }
+    
+    .frm_submit input[type=submit]{
+        @extend .btn;
+        @extend .btn-lg;
+        @extend .btn-yellow;
+    }
+}
+
+
+// .frm_style_formidable-style.with_frm_style input[type=text],
+// .frm_style_formidable-style.with_frm_style input[type=password],
+// .frm_style_formidable-style.with_frm_style input[type=email],
+// .frm_style_formidable-style.with_frm_style input[type=number],
+// .frm_style_formidable-style.with_frm_style input[type=url],
+// .frm_style_formidable-style.with_frm_style input[type=tel],
+// .frm_style_formidable-style.with_frm_style input[type=phone],
+// .frm_style_formidable-style.with_frm_style input[type=search],
+// .frm_style_formidable-style.with_frm_style select,
+// .frm_style_formidable-style.with_frm_style textarea,
+// .frm_form_fields_style,
+// .frm_style_formidable-style.with_frm_style .frm_scroll_box .frm_opt_container,
+// .frm_form_fields_active_style,
+// .frm_form_fields_error_style,
+// .frm_style_formidable-style.with_frm_style .frm-card-element.StripeElement,
+// .frm_style_formidable-style.with_frm_style .chosen-container-multi .chosen-choices,
+// .frm_style_formidable-style.with_frm_style .chosen-container-single .chosen-single
+//  {
+
+//  }

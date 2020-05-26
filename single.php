@@ -14,38 +14,58 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 <div class="wrapper" id="single-wrapper">
 
-	<div class="<?php echo esc_attr( $container ); ?>" id="content" tabindex="-1">
+	<?php while( have_posts() ): the_post(); ?>
 
-		<div class="row">
+		<header class="entry-header mb-5">
 
-			<!-- Do the left sidebar check -->
-			<?php get_template_part( 'global-templates/left-sidebar-check' ); ?>
+			<?php if(has_post_thumbnail()): ?>
 
-			<main class="site-main" id="main">
+				<div class="featured-image text-light">
 
-				<?php while ( have_posts() ) : the_post(); ?>
+					<img src="<?php echo get_the_post_thumbnail_url( ); ?>">
+					<div class="article">
+
+						<div class="container">
+
+							<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+							<?php understrap_posted_on(); ?>
+
+						</div>
+					</div>
+
+				</div>
+
+			<?php else: ?>
+
+				<div class="text-left bg-light text-dark p-5 mb-3">
+					<div class="<?php echo esc_attr( $container ); ?>">
+						<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+						<?php understrap_posted_on(); ?>
+					</div>
+				</div>
+
+			<?php endif; ?>
+
+		</header><!-- .entry-header -->
+
+		<main class="<?php echo esc_attr( $container ); ?>" id="main">
+
+			<div class="row">
+				<!-- Do the left sidebar check -->
+				<?php get_template_part( 'sidebar-templates/sidebar', 'left' ); ?>
+			
+				<article <?php post_class(['col-lg']); ?> id="post-<?php the_ID(); ?>">
 
 					<?php get_template_part( 'loop-templates/content', 'single' ); ?>
 
-					<?php understrap_post_nav(); ?>
+				</article>
 
-					<?php
-					// If comments are open or we have at least one comment, load up the comment template.
-					if ( comments_open() || get_comments_number() ) :
-						comments_template();
-					endif;
-					?>
+				<!-- Do the right sidebar check -->
+				<?php get_template_part( 'sidebar-templates/sidebar', 'right-static' ); ?>
 
-				<?php endwhile; // end of the loop. ?>
-
-			</main><!-- #main -->
-
-			<!-- Do the right sidebar check -->
-			<?php get_template_part( 'global-templates/right-sidebar-check' ); ?>
-
-		</div><!-- .row -->
-
-	</div><!-- #content -->
+		</main><!-- #main -->
+				
+	<?php endwhile; ?>
 
 </div><!-- #single-wrapper -->
 

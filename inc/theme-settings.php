@@ -48,3 +48,29 @@ if ( ! function_exists( 'understrap_get_theme_default_settings' ) ) {
 		return apply_filters( 'understrap_theme_default_settings', $defaults );
 	}
 }
+
+function understrap_custom_login_logo() { 
+	$custom_logo_id = get_theme_mod( 'custom_logo' );
+	if($custom_logo_id): 
+	?>
+	
+    <style type="text/css">
+        #login h1 a {
+            background-image: url("<?= get_stylesheet_directory_uri() ?>/images/logos/svg/scouts-black.svg");
+			background-size: 176px 50px;
+			height: 50px;
+			width: auto;
+			background-repeat: no-repeat;
+        	padding-bottom: 30px;
+        }
+    </style>
+<?php
+	endif;
+}
+
+add_action( 'login_enqueue_scripts', 'understrap_custom_login_logo' );
+
+function understrap_custom_login_logo_url() {
+    return home_url();
+}
+add_filter( 'login_headerurl', 'understrap_custom_login_logo_url' );

@@ -25,8 +25,12 @@ $understrap_includes = array(
 	'/editor.php',                          // Load Editor functions.
 	'/deprecated.php',                      // Load deprecated functions.
 	'/custom-breadcrumb.php',				// Load custom breadcrumbs.
+	'/acf-front-page-field.php',			// Load custom ACF fields
 );
 
 foreach ( $understrap_includes as $file ) {
 	require_once get_template_directory() . '/inc' . $file;
 }
+
+// get GroupFinder class
+require_once get_template_directory() . '/group-finder/GroupFinderClass.php';

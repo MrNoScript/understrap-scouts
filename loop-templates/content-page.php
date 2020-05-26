@@ -28,6 +28,11 @@ defined( 'ABSPATH' ) || exit;
 
 		<?php edit_post_link( __( 'Edit', 'understrap' ), '<span class="edit-link">', '</span>' ); ?>
 
-	</footer><!-- .entry-footer -->
+		<?php
+		// If comments are open or we have at least one comment, load up the comment template.
+		if ( comments_open() || get_comments_number() ) :
+			comments_template();
+		endif;
+		?>
 
-</article><!-- #post-## -->
+	</footer><!-- .entry-footer -->

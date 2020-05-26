@@ -142,8 +142,6 @@ if ( ! function_exists( 'understrap_default_body_attributes' ) ) {
 	 * @return array
 	 */
 	function understrap_default_body_attributes( $atts ) {
-		$atts['itemscope'] = '';
-		$atts['itemtype']  = 'http://schema.org/WebSite';
 		return $atts;
 	}
 }

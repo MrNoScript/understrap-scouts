@@ -42,11 +42,11 @@ $body-font: 'Nunito Sans';
     height: 2em;
     width: auto;
 }
-  
+
 .navbar-light .navbar-brand {
     color: #7413dc;
 }
-  
+
 .navbar-toggler {
     padding: 0.25rem 0.75rem;
     font-size: 1.25rem;
@@ -68,8 +68,8 @@ $body-font: 'Nunito Sans';
 #footer-full-content {
     padding-top: 1em;
     padding-bottom: 1em;
-    
-  
+
+
     .footer-widget ul {
         list-style-type: none;
         padding-inline-start: 0;
@@ -98,7 +98,7 @@ $body-font: 'Nunito Sans';
             color: #e22e12;
             border-bottom: 1px solid #e22e12;
         }
-    } 
+    }
 }
 
 .testimonial {
@@ -134,7 +134,7 @@ $body-font: 'Nunito Sans';
     .text-#{$color} {
         color: $value;
     }
-    
+
     .bg-map-#{$color} {
         background-color: $value;
         background-image: url("../images/topograph3.svg");
@@ -144,15 +144,15 @@ $body-font: 'Nunito Sans';
     }
 }
 
-.widget {
-    &.bg-cubs a,
-    &.bg-scouts a,
-    &.bg-beavers a,
-    &.bg-explorers a{
-        @extend .btn;
-        @extend .btn-outline-light;
-    }
-}
+// .widget {
+//     &.bg-cubs a,
+//     &.bg-scouts a,
+//     &.bg-beavers a,
+//     &.bg-explorers a{
+//         @extend .btn;
+//         @extend .btn-outline-light;
+//     }
+// }
 
 
 .section-blocks {
@@ -185,7 +185,7 @@ $body-font: 'Nunito Sans';
             position: relative;
             height: 135px;
             border-radius: 2px 2px 0 0;
-            
+
             @media only screen and (max-width: 768px) {
                 height: 100px;
             }
@@ -214,7 +214,7 @@ $body-font: 'Nunito Sans';
                         font-size: 20px;
                     }
                 }
-                
+
             }
         }
 
@@ -298,21 +298,6 @@ $body-font: 'Nunito Sans';
     }
 }
 
-.news-cards.card-columns { 
-    @media (max-width: map-get($grid-breakpoints, 'md')){
-        column-count: 2;
-    }
-    & .card .card-img-top{
-        background-color: $primary;
-    }
-}
-
-.entry-header-image {
-    & .cover-text{
-        color: $light;
-    }
-}
-
 .breadcrumb {
     // Override padding
     padding: 0.5rem 0rem;
@@ -334,12 +319,258 @@ $body-font: 'Nunito Sans';
 
 }
 
-.wrapper{ 
+.wrapper{
     padding-top: 0;
 }
-
 
 [data-target] {
     cursor: pointer;
 }
+
+.post-card {
+
+    transition: 0.3s;
+
+    background-color: $teal;
+
+    & a {
+        color: $light;
+    }
+
+    &:hover {
+        background-color: darken($teal, 5%);
+    }
+
+    & a:hover {
+        text-decoration: none;
+    }
+}
+
+
+
+// .entry-header-image {
+//     max-height: 250px;
+//     position: relative;
+
+//     & img {
+//         max-height: 500px;
+//         width: 100%;
+//         height: 100%;
+//         object-fit: cover;
+//     }
+
+//     & .cover-text{
+//         color: $light;
+//     }
+
+//     & .posted-on a, & .byline a{
+//         color: $light;
+//     }
+// }
+
+.headline-post, .entry-header {
+
+    & .posted-on a, & .byline a{
+        color: $light;
+    }
+
+    & .featured-image {
+
+        position: relative;
+
+        & img {
+
+            max-height: 500px;
+
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            object-fit: cover;
+            font-family: "object-fit: cover";
+
+        }
+
+        & .article {
+
+            background-color: rgba($black, 0.3);
+            padding: 2rem 5rem;
+            right: 0;
+            left: 0;
+            position: absolute;
+            bottom: 10%;
+
+            & h1 {
+                color: $light;
+            }
+
+            & .read-more {
+                width: 50%;
+            }
+
+            @media screen and (max-width: map-get($grid-breakpoints, 'lg')) {
+                bottom: 0;
+                top: 0;
+                & .read-more {
+                    width: 100%;
+                }
+            }
+
+            @media screen and (max-width: map-get($grid-breakpoints, 'sm')) {
+                bottom: 1rem;
+                top: auto;
+                & .excerpt {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+
+.widget {
+    
+  	&.widget-join {
+		& .widget-title {
+			color: $light;
+			background-color: $primary;
+		}
+		& .widget-body {
+			background-color: rgba($primary, 0.2);
+		}
+	}
+
+    &.monthly-archive {
+
+		& .widget-title {
+			background-color: $yellow;
+			color: $black;
+		}
+
+
+        & .widget-body {
+            background-color: rgba($yellow, 0.2);
+            padding: 1rem 2.5rem;
+
+            & li a {
+                color: $black;
+            }
+        }
+    }
+
+    &.latest-news {
+        & .widget-title {
+            background-color: $green;
+            color: $light;
+        }
+        & .widget-body {
+            transition: 0.3s;
+            background-color: rgba($green, 0.2);
+            color: $dark;
+        }
+
+        & a.widget-body:hover {
+            transition: 0.3s;
+            background-color: rgba($green, 0.4);
+            text-decoration: none;
+        }
+    }
+
+    &.widget_archive {
+        background-color: rgba($green, 0.2);
+
+        & .widgettitle, & .widget-title{
+            background-color: $green;
+        }
+    }
+
+    &.widget-get-involved {
+        background-color: rgba($red, 0.1);
+
+        & .widget-title {
+            background-color: $red;
+        }
+    }
+
+    &.widget_recent_entries {
+
+        & .widgettitle {
+            background-color: $red;
+        }
+
+        & ul {
+            background-color: rgba($red, 0.1);
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+    }
+
+    &.widget-like-this {
+        & .widget-title {
+            background-color: $navy;
+        }
         
+        & .widget-body {
+            background-color: rgba($navy, 0.2);
+
+            & .current_page_item>a {
+                font-weight: bold;
+            }
+            
+        }
+
+        & ul {
+            list-style: none;
+            padding-inline-start: 1.5rem;
+            & li:before {
+                content: '-';
+                padding-right: 0.5rem;
+            }
+        }
+    }
+
+    &.widget-join-beavers,
+    &.widget-join-cubs,
+    &.widget-join-scouts,
+    &.widget-join-explorers,
+    &.widget-join-network {
+
+        & .widget-title {
+            background-color: $primary;
+        }
+
+        & .widget-body {
+            background-color: rgba($primary, 0.2);
+        }
+    }
+
+    & .widgettitle, & .widget-title{
+        color: $light;
+        padding: 1.5rem;
+        margin: 0;
+    }
+
+    & .widget-body {
+        padding: 1rem 1.5rem;
+    }
+    & a.widget-body {
+        display: block;
+    }
+
+    // & {
+
+    //     
+
+    //     &>ul, & .widget-body {
+    //         padding: 1rem 2.5rem;
+    //         background-color: rgba($navy, 0.2);
+
+    //         & .current_page_item {
+    //             font-weight: bold;
+    //         }
+    //     }
+        
+       
+
+    // }
+    
+}
